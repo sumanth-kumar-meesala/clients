@@ -18,8 +18,11 @@ class MainActivity : BaseActivity() {
         rvEmployees.adapter = employeeAdapter
 
         if (isNetworkAvailable()) {
+            showProgress()
+
             RetrofitInstance.service.getEmployees().enqueueKt {
                 onResponse = {
+                    hideProgress()
                     employeeAdapter.addEmployees(it.body()!!)
                 }
 

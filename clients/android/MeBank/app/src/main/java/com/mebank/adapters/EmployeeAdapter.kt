@@ -1,6 +1,7 @@
 package com.mebank.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mebank.R
+import com.mebank.activities.EmployeeActivity
 import com.mebank.models.Employee
 import kotlinx.android.synthetic.main.item_employee.view.*
 
@@ -48,6 +50,13 @@ class EmployeeAdapter(val context: Context) : RecyclerView.Adapter<EmployeeAdapt
                 Glide.with(context).load(imageByteArray)
                     .apply(RequestOptions().placeholder(R.drawable.ic_account_circle))
                     .into(itemView.ivEmployee)
+            }
+
+            view.setOnClickListener {
+                context.startActivity(Intent(context, EmployeeActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    putExtra(EmployeeActivity.EMPLOYEE_ID, employee.id)
+                })
             }
         }
 
