@@ -1,0 +1,17 @@
+aniso8601==8.0.0
+Click==7.0
+Flask==1.1.1
+Flask-RESTful==0.3.8
+get==2019.4.13
+itsdangerous==1.1.0
+Jinja2==2.11.1
+MarkupSafe==1.1.1
+numpy==1.18.1
+opencv-python==4.2.0.32
+post==2019.4.13
+public==2019.4.13
+pytz==2019.3
+query-string==2019.4.13
+request==2019.4.13
+six==1.14.0
+Werkzeug==1.0.0
