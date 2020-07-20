@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/*Custom response parser for retrofit*/
 class CallBackKt<T> : Callback<T> {
 
     var onResponse: ((Response<T>) -> Unit)? = null

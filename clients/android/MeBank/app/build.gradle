@@ -17,7 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-
+    //Setting development and production flavours
     productFlavors {
         production {
             applicationId "com.mebank"
@@ -28,15 +28,17 @@ android {
         }
     }
 
+    //Release APK signing config
     signingConfigs {
         release {
             storeFile file("../app/artifacts/production_keystore.jks")
-            storePassword "!Mp@ctappANDROID"
-            keyAlias "impact"
-            keyPassword "!Mp@ctappANDROID"
+            storePassword "M3b@nk2020"
+            keyAlias "mebank"
+            keyPassword "M3b@nk2020"
         }
     }
 
+    //Release and debug build type
     buildTypes {
         debug {
             buildConfigField 'String', 'BASE_URL', '"http://a407aaf8e677.ngrok.io/"'
@@ -65,33 +67,28 @@ android {
             }
         }
     }
-
-
-    dependencies {
-        implementation fileTree(dir: "libs", include: ["*.jar"])
-        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-        implementation 'androidx.core:core-ktx:1.3.0'
-        implementation 'androidx.appcompat:appcompat:1.1.0'
-        implementation 'com.google.android.material:material:1.1.0'
-
-        //For rest API
-        implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-        implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-
-        //For circular image view
-        implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-        implementation 'com.github.bumptech.glide:glide:4.11.0'
-        annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-
-        testImplementation 'junit:junit:4.12'
-        androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-        androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    }
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.1.0'
+
+    //Package for rest API
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+
+    //Package for circular image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Package to display image from API, resources
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
 }

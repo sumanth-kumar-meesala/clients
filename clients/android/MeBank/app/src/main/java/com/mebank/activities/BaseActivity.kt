@@ -10,6 +10,7 @@ import com.mebank.views.Progress
 
 open class BaseActivity : AppCompatActivity() {
 
+    private val TAG = BaseActivity::class.java.simpleName
     private var progress: Progress? = null
 
     protected fun showProgress() {
@@ -22,20 +23,28 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    /*Function to hide progress*/
     protected fun hideProgress() {
         progress?.hideDialog()
     }
 
+    /*Function to show toast
+    * id : string resource id
+    * */
     protected fun showToast(messageId: Int) {
         Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show()
     }
 
+    /*Function to show toast
+   * id : message string value
+   * */
     protected fun showToast(message: String?) {
         message?.let {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
     }
 
+    /*Function to check network and display toast if there is no network  */
     protected fun isNetworkAvailable(): Boolean {
         val connectivityManager =
             getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -49,20 +58,26 @@ open class BaseActivity : AppCompatActivity() {
         return isAvailable
     }
 
+    /*Override finish method to display animation on exit */
     override fun finish() {
         super.finish()
         overridePendingTransitionExit()
     }
 
+    /* Override start activity to display animation
+    * intent : Intent of activity to start
+    * */
     override fun startActivity(intent: Intent) {
         super.startActivity(intent)
         overridePendingTransitionEnter()
     }
 
+    /*Method to override pending transition for animation on exit activity*/
     private fun overridePendingTransitionEnter() {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
     }
 
+    /*Method to override pending transition for animation on start activity*/
     private fun overridePendingTransitionExit() {
         overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right)
     }

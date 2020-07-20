@@ -7,9 +7,11 @@ import android.graphics.drawable.ColorDrawable
 import android.view.Window
 import com.mebank.R
 
+/*Helper class to show progress*/
 class Progress(private var activity: Activity) {
     private lateinit var dialog: Dialog
 
+    /*Function to show dialog*/
     fun showDialog() {
         if (activity != null && !activity.isFinishing) {
             dialog = Dialog(activity)
@@ -25,6 +27,7 @@ class Progress(private var activity: Activity) {
         }
     }
 
+    /*Function to hide dialog*/
     fun hideDialog() {
         if (activity != null && !activity.isFinishing) {
             dialog.dismiss()

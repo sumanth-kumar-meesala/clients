@@ -1,5 +1,6 @@
 package com.mebank.models
 
+/*Employee model*/
 data class Employee(
     val id: Int,
     val first_name: String,

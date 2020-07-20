@@ -3,6 +3,7 @@ package com.mebank.adapters
 import android.content.Context
 import android.content.Intent
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,29 +17,43 @@ import kotlinx.android.synthetic.main.item_employee.view.*
 
 class EmployeeAdapter(val context: Context) : RecyclerView.Adapter<EmployeeAdapter.EmployeeVH>() {
 
+    private val TAG = EmployeeAdapter::class.java.simpleName
     var employees: MutableList<Employee> = ArrayList()
 
+    /*Inflating the view for employees*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeVH {
+        Log.i(TAG, "In onCreateViewHolder")
+
         val root =
             LayoutInflater.from(parent.context).inflate(R.layout.item_employee, parent, false)
         return EmployeeVH(root)
     }
 
+    /*Method to append employees to list
+    * newEmployeesData : list of employees
+    * */
     fun addEmployees(newEmployeesData: List<Employee>) {
         employees.addAll(newEmployeesData)
         notifyDataSetChanged()
     }
 
+    /*Method to return size of employees*/
     override fun getItemCount(): Int {
         return employees.size
     }
 
+    /*Binding the view to data*/
     override fun onBindViewHolder(employeeVH: EmployeeVH, position: Int) {
+        Log.i(TAG, "In onBindViewHolder")
         employeeVH.bindData(position)
     }
 
+    /*View holder class of the employee*/
     inner class EmployeeVH(private val view: View) : RecyclerView.ViewHolder(view) {
 
+        /*Binding employee details
+        * position : position of the item
+        * */
         fun bindData(position: Int) {
             val employee = employees[position]
             view.tvName.text = "${employee.first_name} ${employee.last_name}"
