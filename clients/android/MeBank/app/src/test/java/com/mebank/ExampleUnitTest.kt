@@ -1,4 +1,4 @@
-package com.b.mebank
+package com.mebank
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

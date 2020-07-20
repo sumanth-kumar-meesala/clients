@@ -1,4 +1,4 @@
-package com.b.mebank
+package com.mebank
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
