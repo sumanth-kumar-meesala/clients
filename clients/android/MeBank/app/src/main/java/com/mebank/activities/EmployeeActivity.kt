@@ -2,7 +2,6 @@ package com.mebank.activities
 
 import android.os.Bundle
 import android.util.Base64
-import android.util.Log
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -11,6 +10,7 @@ import com.mebank.models.Employee
 import com.mebank.retrofit.RetrofitInstance
 import com.mebank.retrofit.enqueueKt
 import kotlinx.android.synthetic.main.activity_employee.*
+import timber.log.Timber
 
 
 class EmployeeActivity : BaseActivity() {
@@ -26,7 +26,8 @@ class EmployeeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_employee)
 
-        Log.i(TAG, "In onCreate")
+        Timber.tag(TAG)
+        Timber.d("Activity Created")
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -38,7 +39,8 @@ class EmployeeActivity : BaseActivity() {
     private fun getEmployeeDetails() {
         val employeeId = intent.getIntExtra(EMPLOYEE_ID, 0)
 
-        Log.d(TAG, "Employee Id : $employeeId")
+        Timber.tag(TAG)
+        Timber.i("Employee id $employeeId")
 
         if (isNetworkAvailable()) {
             showProgress()
@@ -49,19 +51,18 @@ class EmployeeActivity : BaseActivity() {
                     hideProgress()
 
                     if (it.isSuccessful && it.body() != null) {
-                        Log.d(TAG, "Employee details fetched successfully")
+
+                        Timber.d("Employee details fetched successfully")
                         displayEmployeeDetails(it.body()!!)
                     } else {
-                        Log.e(
-                            TAG,
+                        Timber.e(
                             "Error occurred while fetching data from in getEmployee : ${it.message()}"
                         )
                         showToast(it.message())
                     }
                 }
                 onFailure = {
-                    Log.e(
-                        TAG,
+                    Timber.e(
                         "Error occurred while fetching data from in getEmployee : ${it?.message}"
                     )
 

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mebank.R
 import com.mebank.views.Progress
+import timber.log.Timber
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -14,6 +15,8 @@ open class BaseActivity : AppCompatActivity() {
     private var progress: Progress? = null
 
     protected fun showProgress() {
+        Timber.i("$TAG : show progress")
+
         if (this != null && !this.isFinishing) {
             if (progress == null) {
                 progress = Progress(this)
@@ -25,6 +28,7 @@ open class BaseActivity : AppCompatActivity() {
 
     /*Function to hide progress*/
     protected fun hideProgress() {
+        Timber.i("$TAG : hide progress")
         progress?.hideDialog()
     }
 
@@ -32,6 +36,7 @@ open class BaseActivity : AppCompatActivity() {
     * id : string resource id
     * */
     protected fun showToast(messageId: Int) {
+        Timber.i("$TAG : show toast")
         Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show()
     }
 
@@ -39,6 +44,7 @@ open class BaseActivity : AppCompatActivity() {
    * id : message string value
    * */
     protected fun showToast(message: String?) {
+        Timber.i("$TAG : show toast")
         message?.let {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
@@ -46,6 +52,8 @@ open class BaseActivity : AppCompatActivity() {
 
     /*Function to check network and display toast if there is no network  */
     protected fun isNetworkAvailable(): Boolean {
+        Timber.i("$TAG : isNetworkAvailable")
+
         val connectivityManager =
             getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
@@ -54,6 +62,8 @@ open class BaseActivity : AppCompatActivity() {
         if (!isAvailable) {
             showToast(R.string.no_internet_connection)
         }
+
+        Timber.d("$TAG : isNetworkAvailable : $isAvailable")
 
         return isAvailable
     }

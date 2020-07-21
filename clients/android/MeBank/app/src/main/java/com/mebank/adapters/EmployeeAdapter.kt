@@ -3,7 +3,6 @@ package com.mebank.adapters
 import android.content.Context
 import android.content.Intent
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,22 @@ import com.mebank.R
 import com.mebank.activities.EmployeeActivity
 import com.mebank.models.Employee
 import kotlinx.android.synthetic.main.item_employee.view.*
+import timber.log.Timber
 
-class EmployeeAdapter(val context: Context) : RecyclerView.Adapter<EmployeeAdapter.EmployeeVH>() {
+class EmployeeAdapter : RecyclerView.Adapter<EmployeeAdapter.EmployeeVH> {
 
     private val TAG = EmployeeAdapter::class.java.simpleName
     var employees: MutableList<Employee> = ArrayList()
+    lateinit var context: Context
+
+    constructor(context: Context) {
+        Timber.tag(TAG)
+        this.context = context
+    }
 
     /*Inflating the view for employees*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeVH {
-        Log.i(TAG, "In onCreateViewHolder")
+        Timber.i("In onCreateViewHolder")
 
         val root =
             LayoutInflater.from(parent.context).inflate(R.layout.item_employee, parent, false)
@@ -35,16 +41,19 @@ class EmployeeAdapter(val context: Context) : RecyclerView.Adapter<EmployeeAdapt
     fun addEmployees(newEmployeesData: List<Employee>) {
         employees.addAll(newEmployeesData)
         notifyDataSetChanged()
+        Timber.i("Employees added successfully")
     }
 
     /*Method to return size of employees*/
     override fun getItemCount(): Int {
+        Timber.i("Total number of employees ${employees.size}")
+
         return employees.size
     }
 
     /*Binding the view to data*/
     override fun onBindViewHolder(employeeVH: EmployeeVH, position: Int) {
-        Log.i(TAG, "In onBindViewHolder")
+        Timber.i("In onBindViewHolder")
         employeeVH.bindData(position)
     }
 
