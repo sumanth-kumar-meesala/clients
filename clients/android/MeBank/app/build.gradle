@@ -41,12 +41,12 @@ android {
     //Release and debug build type
     buildTypes {
         debug {
-            buildConfigField 'String', 'BASE_URL', '"http://a407aaf8e677.ngrok.io/"'
+            buildConfigField 'String', 'BASE_URL', '"http://10.0.2.2:5000/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
-            buildConfigField 'String', 'BASE_URL', '"http://127.0.0.1:5000/"'
+            buildConfigField 'String', 'BASE_URL', '"http://10.0.2.2:5000/"'
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
